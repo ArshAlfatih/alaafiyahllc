@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alaafiyah LLC</title>
+  <meta name="description" content="Alaafiyah LLC is a US-registered limited liability company providing e-commerce and digital business services." />
+  <style>
+    :root {
+      --primary: #0f172a;
+      --secondary: #2563eb;
+      --bg-light: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary), #020617);
+      color: #ffffff;
+      padding: 90px 20px;
+      text-align: center;
+      animation: fadeDown 1.2s ease;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 42px;
+      letter-spacing: 1.5px;
+    }
+    header p {
+      margin-top: 12px;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #020617;
+      padding: 12px;
+      text-align: center;
+      z-index: 1000;
+    }
+    nav a {
+      color: #ffffff;
+      margin: 0 18px;
+      text-decoration: none;
+      font-size: 15px;
+      position: relative;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 80px 20px;
+      animation: fadeUp 1.2s ease;
+    }
+    section h2 {
+      font-size: 30px;
+      margin-bottom: 18px;
+      color: var(--primary);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-light);
+      padding: 35px;
+      border-radius: 14px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+
+    .services ul {
+      padding-left: 20px;
+    }
+    .services li {
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #020617, var(--primary));
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 14px;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 34px; }
+      section h2 { font-size: 26px; }
+      nav a { margin: 0 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Alaafiyah LLC</h1>
+  <p>A US-Registered Limited Liability Company</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+  <a href="#privacy">Privacy</a>
+</nav>
+
+<section id="about">
+  <h2>About Alaafiyah LLC</h2>
+  <div class="card">
+    <p>
+      Alaafiyah LLC is a legally registered limited liability company in the United States.
+      We operate as a remote business focusing on e-commerce and digital services.
+    </p>
+    <p>
+      Our mission is to build a transparent, compliant, and ethical business that delivers
+      long-term value through trusted online platforms.
+    </p>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <h2>Our Services</h2>
+  <div class="card">
+    <ul>
+      <li>Online retail and e-commerce operations</li>
+      <li>Product sourcing and supplier coordination</li>
+      <li>Order fulfillment and operations management</li>
+      <li>Digital business support services</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Information</h2>
+  <div class="card">
+    <p><strong>Business Name:</strong> Alaafiyah LLC</p>
+    <p><strong>Email:</strong> info@alaafiyahllc.com</p>
+    <p><strong>Operating Hours:</strong> Monday – Friday, 9:00 AM – 5:00 PM (EST)</p>
+    <p><strong>Business Type:</strong> E-commerce & Digital Services</p>
+  </div>
+</section>
+
+<section id="privacy">
+  <h2>Privacy Policy</h2>
+  <div class="card">
+    <p>
+      Alaafiyah LLC respects user privacy. Any information collected is used solely for
+      communication and business operations. We do not sell or misuse personal data.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Alaafiyah LLC. All rights reserved.</p>
+  <p>Remote Operations – United States</p>
+</footer>
+
+</body>
+</html>
