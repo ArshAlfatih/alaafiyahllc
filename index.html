@@ -1,10 +1,3 @@
-<!-- ==========================
- GLOBAL NOTE
- Same transition + dark-mode logic is reused on all pages
-========================== -->
-
-<!-- ==========================
- FILE 1: index.html (HOME)
 ========================== -->
 <!DOCTYPE html>
 <html lang="en">
@@ -13,34 +6,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Alaafiyah LLC | US E‑commerce Company</title>
 <style>
-:root{--p:#0f2a44;--s:#143d63;--a:#4fb3ff;--bg:#f4f7fb;--text:#222}
-body.dark{--bg:#0b1f33;--text:#eef4ff}
-body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:.4s}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--p:#0f2a44;--s:#143d63;--a:#4fb3ff;--ac2:#ff6b6b;--ac3:#4ecdc4;--bg:#f4f7fb;--text:#222;--shadow:0 25px 50px rgba(15,42,68,.15)}
+body.dark{--bg:#0a1428;--text:#e8f0ff;--shadow:0 25px 50px rgba(0,0,0,.5)}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:.4s;background-attachment:fixed}
 
-nav{position:fixed;top:0;width:100%;background:rgba(15,42,68,.95);backdrop-filter:blur(8px);padding:15px 30px;display:flex;justify-content:space-between;align-items:center;z-index:1000}
-nav a{color:#fff;text-decoration:none;margin-left:22px;font-weight:500;position:relative}
-nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--a);transition:.4s}
-nav a:hover::after{width:100%}
-.toggle{cursor:pointer;background:#fff;color:#0f2a44;padding:6px 14px;border-radius:20px;font-size:13px;margin-left:20px}
+nav{position:fixed;top:0;width:100%;background:rgba(15,42,68,.85);backdrop-filter:blur(20px);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid rgba(79,179,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.1)}
+nav strong{font-size:24px;background:linear-gradient(135deg,#4fb3ff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px}
+nav > div{display:flex;align-items:center;gap:8px}
+nav a{color:#fff;text-decoration:none;margin-left:28px;font-weight:500;position:relative;font-size:15px;transition:.3s}
+nav a::before{content:'';position:absolute;left:0;bottom:-8px;width:0;height:2.5px;background:linear-gradient(90deg,var(--a),#00d4ff);transition:.4s;border-radius:2px}
+nav a:hover{color:#00d4ff}
+nav a:hover::before{width:100%}
+.toggle{cursor:pointer;background:linear-gradient(135deg,#ff6b6b,#ffa94d);color:#fff;padding:8px 18px;border-radius:25px;font-size:13px;margin-left:20px;border:none;font-weight:600;transition:.3s;transform:scale(1)}
+.toggle:hover{transform:scale(1.08);box-shadow:0 8px 20px rgba(255,107,107,.3)}
 
-header{min-height:100vh;background:radial-gradient(circle at top,#1e4f7a,#0f2a44 60%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-header h1{font-size:54px;animation:down 1.2s ease}
-header p{font-size:20px;max-width:760px;opacity:.9;animation:fade 2s}
-header a{margin-top:35px;background:#fff;color:var(--p);padding:15px 32px;border-radius:40px;font-weight:600;text-decoration:none;animation:float 4s infinite}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%,rgba(79,179,255,.1),transparent 50%),radial-gradient(circle at 80% 80%,rgba(78,205,196,.1),transparent 50%);pointer-events:none;animation:bgShift 8s ease-in-out infinite}
+@keyframes bgShift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
 
-section{max-width:1150px;margin:auto;padding:120px 20px}
-.card{background:#fff;border-radius:22px;padding:45px;box-shadow:0 20px 50px rgba(0,0,0,.08);opacity:0;transform:translateY(70px) scale(.95);transition:1s}
-body.dark .card{background:#122e4a;color:#fff}
-.card.show{opacity:1;transform:none}
-footer{background:var(--p);color:#fff;text-align:center;padding:30px}
+header{min-height:100vh;background:linear-gradient(135deg,#1e4f7a 0%,#0f2a44 50%,#143d63 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(79,179,255,.2),transparent 70%);border-radius:50%;top:-100px;right:-100px;animation:float 6s ease-in-out infinite}
+header::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(78,205,196,.15),transparent 70%);border-radius:50%;bottom:-150px;left:-150px;animation:float 8s ease-in-out infinite reverse}
+header h1{font-size:72px;font-weight:800;animation:slideDown 1s ease-out;margin-bottom:20px;letter-spacing:-1px;position:relative;z-index:1}
+header p{font-size:20px;max-width:800px;opacity:.95;animation:fadeInUp 1.2s ease-out .2s both;line-height:1.6;position:relative;z-index:1}
+header a{margin-top:45px;background:linear-gradient(135deg,#fff,#f0f0f0);color:var(--p);padding:16px 40px;border-radius:50px;font-weight:700;text-decoration:none;animation:zoomIn 1s ease-out .4s both;transition:.3s;cursor:pointer;position:relative;z-index:1;box-shadow:0 15px 40px rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.3)}
+header a:hover{transform:translateY(-3px);box-shadow:0 25px 50px rgba(255,255,255,.3);background:linear-gradient(135deg,#00d4ff,#4fb3ff);color:#fff}
 
-/* page transition */
-.transition{position:fixed;inset:0;background:#0f2a44;z-index:2000;transform:scaleY(0);transform-origin:bottom;transition:.6s}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;justify-content:center;margin-top:80px;position:relative;z-index:1;max-width:900px;margin-left:auto;margin-right:auto}
+.stat{background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.05));backdrop-filter:blur(20px);padding:40px 30px;border-radius:25px;border:1px solid rgba(255,255,255,.2);text-align:center;min-width:160px;transform:translateY(60px);opacity:0;transition:1s cubic-bezier(.34,.1,.68,1);cursor:pointer}
+.stat:hover{background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(255,255,255,.1));transform:translateY(40px) scale(1.05);border-color:rgba(79,179,255,.5)}
+.stat.show{transform:translateY(0);opacity:1}
+.stat h2{font-size:32px;color:#4fb3ff;margin-bottom:10px;font-weight:700}
+.stat p{font-size:14px;opacity:.9;font-weight:500}
+
+section{max-width:1200px;margin:auto;padding:140px 30px;position:relative}
+section:nth-child(2){background:linear-gradient(180deg,transparent,rgba(79,179,255,.05))}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(255,255,255,.7));backdrop-filter:blur(20px);border-radius:30px;padding:50px 40px;opacity:0;transform:translateY(80px) rotateX(10deg);transition:1.2s cubic-bezier(.34,.1,.68,1);border:1px solid rgba(255,255,255,.3);cursor:pointer;position:relative;overflow:hidden}
+body.dark .card{background:linear-gradient(145deg,rgba(18,46,74,.95),rgba(18,46,74,.75));border-color:rgba(79,179,255,.2)}
+.card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:.6s}
+.card:hover::before{left:100%}
+.card:hover{opacity:1;transform:translateY(0) rotateX(0) scale(1.05);box-shadow:var(--shadow)}
+.card.show{opacity:1;transform:translateY(0) rotateX(0)}
+.card h2{font-size:26px;margin-bottom:15px;background:linear-gradient(135deg,var(--a),#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card p{font-size:15px;line-height:1.7;opacity:.8}
+footer{background:linear-gradient(135deg,var(--p),#0a1428);color:#fff;text-align:center;padding:50px 30px;border-top:1px solid rgba(79,179,255,.1)}
+
+.transition{position:fixed;inset:0;background:linear-gradient(135deg,#0f2a44,#143d63);z-index:2000;transform:scaleY(0);transform-origin:bottom;transition:.6s cubic-bezier(.68,-.55,.265,1.55)}
 .transition.show{transform:scaleY(1);transform-origin:top}
 
-@keyframes down{from{opacity:0;transform:translateY(-50px)}to{opacity:1}}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-60px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes zoomIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-30px) translateX(20px)}}
+
+::-webkit-scrollbar{width:12px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#4fb3ff,#00d4ff);border-radius:6px;transition:.3s}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#00d4ff,#4fb3ff)}
 </style>
 </head>
 <body>
@@ -60,16 +84,31 @@ footer{background:var(--p);color:#fff;text-align:center;padding:30px}
 <h1>Alaafiyah LLC</h1>
 <p>US‑registered e‑commerce & online retail company operating on trusted marketplaces like Amazon USA.</p>
 <a data-link href="about.html">Discover More</a>
+<div class="stats">
+<div class="stat"><h2>US LLC</h2><p>Registered & Compliant</p></div>
+<div class="stat"><h2>E‑commerce</h2><p>Amazon‑focused Model</p></div>
+<div class="stat"><h2>Scalable</h2><p>Built for Growth</p></div>
+</div>
 </header>
 
 <section>
-<div class="card"><h2>Reliable • Compliant • Scalable</h2><p>Professional, regulation‑compliant e‑commerce operations.</p></div>
+<div class="grid">
+<div class="card glass"><h2>US‑Registered LLC</h2><p>Legally registered company operating under US compliance standards.</p></div>
+<div class="card glass"><h2>E‑commerce Operations</h2><p>Focused on Amazon USA and other trusted online marketplaces.</p></div>
+<div class="card glass"><h2>Scalable Model</h2><p>Built for long‑term growth with clean, verifiable operations.</p></div>
+</div>
 </section>
 <footer>© Alaafiyah LLC</footer>
 
 <script>
 const c=document.querySelector('.card');
-new IntersectionObserver(e=>{if(e[0].isIntersecting)c.classList.add('show')},{threshold:.3}).observe(c);
+const cards=document.querySelectorAll('.card,.stat');
+const io=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})
+},{threshold:.25});
+cards.forEach(el=>io.observe(el));
+
+(e=>{if(e[0].isIntersecting)c.classList.add('show')},{threshold:.3}).observe(c);
 
 function toggleDark(){document.body.classList.toggle('dark')}
 
