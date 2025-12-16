@@ -1,46 +1,82 @@
-<!-- ==========================
- GLOBAL NOTE
- Same transition + dark-mode logic is reused on all pages
-========================== -->
-
-<!-- ==========================
- FILE 1: index.html (HOME)
-========================== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Alaafiyah LLC | US E‑commerce Company</title>
+<title>Contact Us | Alaafiyah LLC</title>
 <style>
-:root{--p:#0f2a44;--s:#143d63;--a:#4fb3ff;--bg:#f4f7fb;--text:#222}
-body.dark{--bg:#0b1f33;--text:#eef4ff}
-body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:.4s}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--p:#0f2a44;--s:#143d63;--a:#4fb3ff;--ac2:#ff6b6b;--ac3:#4ecdc4;--bg:#f4f7fb;--text:#222;--shadow:0 25px 50px rgba(15,42,68,.15)}
+body.dark{--bg:#0a1428;--text:#e8f0ff;--shadow:0 25px 50px rgba(0,0,0,.5)}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:.4s;background-attachment:fixed}
 
-nav{position:fixed;top:0;width:100%;background:rgba(15,42,68,.95);backdrop-filter:blur(8px);padding:15px 30px;display:flex;justify-content:space-between;align-items:center;z-index:1000}
-nav a{color:#fff;text-decoration:none;margin-left:22px;font-weight:500;position:relative}
-nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--a);transition:.4s}
-nav a:hover::after{width:100%}
-.toggle{cursor:pointer;background:#fff;color:#0f2a44;padding:6px 14px;border-radius:20px;font-size:13px;margin-left:20px}
+nav{position:fixed;top:0;width:100%;background:rgba(15,42,68,.85);backdrop-filter:blur(20px);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid rgba(79,179,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.1)}
+nav strong{font-size:24px;background:linear-gradient(135deg,#4fb3ff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav > div{display:flex;align-items:center;gap:8px}
+nav a{color:#fff;text-decoration:none;margin-left:28px;font-weight:500;position:relative;font-size:15px;transition:.3s}
+nav a::before{content:'';position:absolute;left:0;bottom:-8px;width:0;height:2.5px;background:linear-gradient(90deg,var(--a),#00d4ff);transition:.4s}
+nav a:hover{color:#00d4ff}
+nav a:hover::before{width:100%}
+.toggle{cursor:pointer;background:linear-gradient(135deg,#ff6b6b,#ffa94d);color:#fff;padding:8px 18px;border-radius:25px;font-size:13px;margin-left:20px;border:none;font-weight:600;transition:.3s}
+.toggle:hover{transform:scale(1.08)}
 
-header{min-height:100vh;background:radial-gradient(circle at top,#1e4f7a,#0f2a44 60%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-header h1{font-size:54px;animation:down 1.2s ease}
-header p{font-size:20px;max-width:760px;opacity:.9;animation:fade 2s}
-header a{margin-top:35px;background:#fff;color:var(--p);padding:15px 32px;border-radius:40px;font-weight:600;text-decoration:none;animation:float 4s infinite}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%,rgba(79,179,255,.1),transparent 50%),radial-gradient(circle at 80% 80%,rgba(78,205,196,.1),transparent 50%);pointer-events:none;animation:bgShift 8s ease-in-out infinite}
+@keyframes bgShift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
 
-section{max-width:1150px;margin:auto;padding:120px 20px}
-.card{background:#fff;border-radius:22px;padding:45px;box-shadow:0 20px 50px rgba(0,0,0,.08);opacity:0;transform:translateY(70px) scale(.95);transition:1s}
-body.dark .card{background:#122e4a;color:#fff}
-.card.show{opacity:1;transform:none}
-footer{background:var(--p);color:#fff;text-align:center;padding:30px}
+header{min-height:50vh;background:linear-gradient(135deg,#1e4f7a 0%,#0f2a44 50%,#143d63 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;margin-top:80px}
+header h1{font-size:56px;font-weight:800;animation:slideDown 1s ease-out}
+header p{font-size:18px;opacity:.95;animation:fadeInUp 1.2s ease-out .2s both;margin-top:20px}
 
-/* page transition */
-.transition{position:fixed;inset:0;background:#0f2a44;z-index:2000;transform:scaleY(0);transform-origin:bottom;transition:.6s}
+section{max-width:1200px;margin:auto;padding:100px 30px;position:relative}
+
+.contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+
+.contact-info{animation:slideRight 1s ease-out}
+.info-item{background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(255,255,255,.7));backdrop-filter:blur(20px);border-radius:20px;padding:30px;margin-bottom:25px;border:1px solid rgba(255,255,255,.3);transition:.4s;cursor:pointer}
+body.dark .info-item{background:linear-gradient(145deg,rgba(18,46,74,.95),rgba(18,46,74,.75))}
+.info-item:hover{transform:translateX(10px);box-shadow:var(--shadow)}
+.info-icon{font-size:32px;margin-bottom:10px}
+.info-item h3{font-size:18px;color:#4fb3ff;margin-bottom:8px}
+.info-item p{font-size:14px;opacity:.8}
+
+.form-group{margin-bottom:25px}
+label{display:block;font-weight:600;margin-bottom:10px;color:#4fb3ff;font-size:14px}
+input,textarea{width:100%;padding:14px 18px;border:2px solid rgba(79,179,255,.2);border-radius:15px;background:rgba(255,255,255,.8);color:var(--text);font-family:inherit;font-size:14px;transition:.3s;animation:slideLeft 1s ease-out}
+body.dark input,body.dark textarea{background:rgba(18,46,74,.8)}
+input:focus,textarea:focus{outline:none;border-color:#4fb3ff;box-shadow:0 0 20px rgba(79,179,255,.3);transform:scale(1.02)}
+textarea{resize:vertical;min-height:140px}
+
+.form-submit{background:linear-gradient(135deg,#4fb3ff,#00d4ff);color:#fff;padding:14px 40px;border:none;border-radius:25px;font-weight:700;cursor:pointer;transition:.4s;font-size:15px;width:100%;margin-top:20px;position:relative;overflow:hidden}
+.form-submit::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(255,255,255,.3);transition:.4s}
+.form-submit:hover::before{left:100%}
+.form-submit:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(79,179,255,.4)}
+.form-submit:active{transform:translateY(-1px)}
+
+.contact-form{background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(255,255,255,.7));backdrop-filter:blur(20px);border-radius:25px;padding:50px;border:1px solid rgba(255,255,255,.3);animation:slideLeft 1s ease-out}
+body.dark .contact-form{background:linear-gradient(145deg,rgba(18,46,74,.95),rgba(18,46,74,.75))}
+.contact-form h2{font-size:28px;margin-bottom:30px;color:#4fb3ff}
+
+.success-message{display:none;background:linear-gradient(135deg,#4ecdc4,#00d4ff);color:#fff;padding:20px;border-radius:15px;margin-bottom:20px;text-align:center;font-weight:600;animation:pulse 0.6s}
+@keyframes pulse{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
+
+footer{background:linear-gradient(135deg,var(--p),#0a1428);color:#fff;text-align:center;padding:50px 30px;border-top:1px solid rgba(79,179,255,.1)}
+
+.transition{position:fixed;inset:0;background:linear-gradient(135deg,#0f2a44,#143d63);z-index:2000;transform:scaleY(0);transform-origin:bottom;transition:.6s cubic-bezier(.68,-.55,.265,1.55)}
 .transition.show{transform:scaleY(1);transform-origin:top}
 
-@keyframes down{from{opacity:0;transform:translateY(-50px)}to{opacity:1}}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-60px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+::-webkit-scrollbar{width:12px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#4fb3ff,#00d4ff);border-radius:6px}
+
+@media(max-width:768px){
+.contact-wrapper{grid-template-columns:1fr;gap:40px}
+}
 </style>
 </head>
 <body>
@@ -48,6 +84,7 @@ footer{background:var(--p);color:#fff;text-align:center;padding:30px}
 <nav>
 <strong style="color:#fff">Alaafiyah LLC</strong>
 <div>
+<a data-link href="index.html">Home</a>
 <a data-link href="about.html">About</a>
 <a data-link href="services.html">Services</a>
 <a data-link href="contact.html">Contact</a>
@@ -57,21 +94,69 @@ footer{background:var(--p);color:#fff;text-align:center;padding:30px}
 </nav>
 
 <header>
- <h1>Contact Us</h1>
-<p>Email: info@alaafiyahllc.com</p>
-
-<a data-link href="about.html">Discover More</a>
+<h1>Get In Touch</h1>
+<p>We'd love to hear from you. Send us a message today!</p>
 </header>
 
 <section>
-<div class="card"><h2>Reliable • Compliant • Scalable</h2><p>Professional, regulation‑compliant e‑commerce operations.</p></div>
+<div class="contact-wrapper">
+<div class="contact-info">
+<h2 style="font-size:28px;margin-bottom:30px;color:#4fb3ff">Contact Information</h2>
+<div class="info-item">
+<div class="info-icon">📍</div>
+<h3>Address</h3>
+<p>United States</p>
+</div>
+<div class="info-item">
+<div class="info-icon">📞</div>
+<h3>Phone</h3>
+<p>+1 (800) ALAAFIYAH</p>
+</div>
+<div class="info-item">
+<div class="info-icon">📧</div>
+<h3>Email</h3>
+<p>info@alaafiyah.com</p>
+</div>
+<div class="info-item">
+<div class="info-icon">🕐</div>
+<h3>Hours</h3>
+<p>Mon-Fri: 9:00 AM - 6:00 PM EST</p>
+</div>
+</div>
+
+<div>
+<form class="contact-form" id="contactForm">
+<h2>Send us a Message</h2>
+<div class="success-message" id="successMsg">✓ Thank you! Your message has been sent successfully.</div>
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" placeholder="John Doe" required>
+</div>
+<div class="form-group">
+<label>Email Address</label>
+<input type="email" placeholder="your@email.com" required>
+</div>
+<div class="form-group">
+<label>Phone Number</label>
+<input type="tel" placeholder="+1 (800) 123-4567">
+</div>
+<div class="form-group">
+<label>Subject</label>
+<input type="text" placeholder="How can we help?" required>
+</div>
+<div class="form-group">
+<label>Message</label>
+<textarea placeholder="Tell us more about your inquiry..." required></textarea>
+</div>
+<button type="submit" class="form-submit">Send Message</button>
+</form>
+</div>
+</div>
 </section>
-<footer>© Alaafiyah LLC</footer>
+
+<footer>© Alaafiyah LLC - All Rights Reserved</footer>
 
 <script>
-const c=document.querySelector('.card');
-new IntersectionObserver(e=>{if(e[0].isIntersecting)c.classList.add('show')},{threshold:.3}).observe(c);
-
 function toggleDark(){document.body.classList.toggle('dark')}
 
 const t=document.getElementById('t');
@@ -79,14 +164,24 @@ document.querySelectorAll('[data-link]').forEach(a=>{
 a.addEventListener('click',e=>{
 e.preventDefault();t.classList.add('show');setTimeout(()=>location.href=a.href,500)
 })})
+
+document.getElementById('contactForm').addEventListener('submit',function(e){
+e.preventDefault();
+const successMsg=document.getElementById('successMsg');
+successMsg.style.display='block';
+this.style.opacity='0.5';
+this.style.pointerEvents='none';
+setTimeout(()=>{
+this.reset();
+this.style.opacity='1';
+this.style.pointerEvents='auto';
+successMsg.style.display='none';
+},3000);
+});
+
+document.querySelectorAll('input,textarea').forEach(el=>{
+el.addEventListener('focus',function(){this.parentElement.style.animation='none';});
+});
 </script>
 </body>
 </html>
-
-<!-- ==========================
- FILE 2–5 (about.html, services.html, contact.html, login.html)
- SAME structure:
- - include .transition div
- - same JS for page transition
- - same dark mode CSS vars
-========================== -->
