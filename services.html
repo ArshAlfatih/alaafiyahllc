@@ -12,14 +12,14 @@ html{scroll-behavior:smooth}
 body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:.4s;background-attachment:fixed}
 
 nav{position:fixed;top:0;width:100%;background:rgba(15,42,68,.85);backdrop-filter:blur(20px);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid rgba(79,179,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.1)}
-nav strong{font-size:24px;background:linear-gradient(135deg,#4fb3ff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav strong{font-size:24px;background:linear-gradient(135deg,#4fb3ff,#00d4ff,#4ecdc4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;font-weight:800}
 nav > div{display:flex;align-items:center;gap:8px}
-nav a{color:#fff;text-decoration:none;margin-left:28px;font-weight:500;position:relative;font-size:15px;transition:.3s}
-nav a::before{content:'';position:absolute;left:0;bottom:-8px;width:0;height:2.5px;background:linear-gradient(90deg,var(--a),#00d4ff);transition:.4s}
-nav a:hover{color:#00d4ff}
-nav a:hover::before{width:100%}
-.toggle{cursor:pointer;background:linear-gradient(135deg,#ff6b6b,#ffa94d);color:#fff;padding:8px 18px;border-radius:25px;font-size:13px;margin-left:20px;border:none;font-weight:600;transition:.3s}
-.toggle:hover{transform:scale(1.08)}
+nav a{color:#fff;text-decoration:none;margin-left:28px;font-weight:500;position:relative;font-size:15px;transition:.3s;letter-spacing:.5px}
+nav a::before{content:'';position:absolute;left:0;bottom:-8px;width:0;height:3px;background:linear-gradient(90deg,#4fb3ff,#00d4ff,#4ecdc4);transition:.5s cubic-bezier(.34,.1,.68,1);border-radius:2px}
+nav a:hover{color:#00d4ff;text-shadow:0 0 10px rgba(0,212,255,.5)}
+nav a:hover::before{width:100%;box-shadow:0 0 15px rgba(0,212,255,.5)}
+.toggle{cursor:pointer;background:linear-gradient(135deg,#f97316,#fb923c,#fed7aa);color:#fff;padding:8px 18px;border-radius:25px;font-size:13px;margin-left:20px;border:none;font-weight:600;transition:.4s;transform:scale(1);box-shadow:0 4px 15px rgba(249,115,22,.3)}
+.toggle:hover{transform:scale(1.12);box-shadow:0 8px 25px rgba(249,115,22,.5);text-shadow:0 0 10px rgba(0,0,0,.2)}
 
 body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%,rgba(79,179,255,.1),transparent 50%),radial-gradient(circle at 80% 80%,rgba(78,205,196,.1),transparent 50%);pointer-events:none;animation:bgShift 8s ease-in-out infinite}
 @keyframes bgShift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
@@ -32,24 +32,28 @@ section{max-width:1200px;margin:auto;padding:100px 30px;position:relative}
 
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:35px;margin-top:60px}
 
-.service-card{background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(255,255,255,.7));backdrop-filter:blur(20px);border-radius:25px;padding:45px 35px;border:1px solid rgba(255,255,255,.3);opacity:0;transform:translateY(60px) rotateY(20deg);transition:1.2s cubic-bezier(.34,.1,.68,1);cursor:pointer;position:relative;overflow:hidden}
+.service-card{background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(255,255,255,.7));backdrop-filter:blur(20px);border-radius:25px;padding:45px 35px;border:1px solid rgba(255,255,255,.3);opacity:1;transform:translateY(0) rotateY(0);transition:1.2s cubic-bezier(.34,.1,.68,1);cursor:pointer;position:relative;overflow:hidden}
 body.dark .service-card{background:linear-gradient(145deg,rgba(18,46,74,.95),rgba(18,46,74,.75))}
-.service-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(79,179,255,.1),transparent 70%);animation:shine 3s infinite}
+.service-card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transition:.8s;opacity:.5}
+.service-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(79,179,255,.1),transparent 70%);animation:shine 3s infinite;opacity:.6}
 @keyframes shine{0%{transform:translate(-30%,-30%)}50%{transform:translate(0,0)}100%{transform:translate(30%,30%)}}
 .service-card.show{opacity:1;transform:translateY(0) rotateY(0)}
-.service-card:hover{transform:translateY(-10px) scale(1.05);box-shadow:var(--shadow)}
+.service-card:hover{transform:translateY(-10px) scale(1.05);box-shadow:var(--shadow);animation:glowPulse .8s ease-in-out;border-color:rgba(79,179,255,.5);position:relative;z-index:10}
+.service-card:hover::before{left:100%;opacity:1}
+.service-card:hover::after{opacity:1}
 .service-icon{font-size:50px;margin-bottom:20px;display:inline-block;animation:float 3s ease-in-out infinite}
 .service-card h3{font-size:24px;margin-bottom:15px;color:#4fb3ff}
 .service-card p{font-size:15px;opacity:.8;line-height:1.7;margin-bottom:20px}
 
-.price-tag{display:inline-block;background:linear-gradient(135deg,#4fb3ff,#00d4ff);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:14px}
+.price-tag{display:inline-block;background:linear-gradient(135deg,#4fb3ff,#00d4ff);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:14px;transition:.3s;cursor:pointer}
+.price-tag:hover{transform:scale(1.15);box-shadow:0 0 25px rgba(79,179,255,.6),0 0 40px rgba(0,212,255,.4);animation:pricePulse .6s ease-in-out}
 
 .comparison-table{background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(255,255,255,.7));backdrop-filter:blur(20px);border-radius:25px;overflow:hidden;border:1px solid rgba(255,255,255,.3);margin-top:80px;animation:fadeInUp 1s ease-out}
 body.dark .comparison-table{background:linear-gradient(145deg,rgba(18,46,74,.95),rgba(18,46,74,.75))}
 table{width:100%;border-collapse:collapse}
 th,td{padding:20px;text-align:left;border-bottom:1px solid rgba(79,179,255,.1)}
 th{background:linear-gradient(135deg,rgba(79,179,255,.1),rgba(78,205,196,.1));font-weight:700;color:#4fb3ff}
-tr:hover{background:rgba(79,179,255,.05)}
+tr:hover{background:rgba(79,179,255,.05);transition:.3s;animation:tableRowHighlight .6s ease-in-out}
 tbody tr:last-child td{border-bottom:none}
 
 footer{background:linear-gradient(135deg,var(--p),#0a1428);color:#fff;text-align:center;padding:50px 30px;border-top:1px solid rgba(79,179,255,.1)}
@@ -60,6 +64,89 @@ footer{background:linear-gradient(135deg,var(--p),#0a1428);color:#fff;text-align
 @keyframes slideDown{from{opacity:0;transform:translateY(-60px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+
+@keyframes glowPulse{0%{box-shadow:0 0 10px rgba(79,179,255,.3),inset 0 0 10px rgba(79,179,255,.1)}50%{box-shadow:0 0 30px rgba(79,179,255,.6),inset 0 0 20px rgba(79,179,255,.2)}100%{box-shadow:0 0 10px rgba(79,179,255,.3),inset 0 0 10px rgba(79,179,255,.1)}}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
+
+@keyframes popIn{0%{opacity:0;transform:scale(0.7) rotateX(45deg)}50%{transform:scale(1.05)}100%{opacity:1;transform:scale(1) rotateX(0)}}
+
+@keyframes pricePulse{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+
+@keyframes shimmerEffect{0%{background-position:-1000px 0}100%{background-position:1000px 0}}
+
+@keyframes tableRowHighlight{0%{background:transparent}50%{background:rgba(79,179,255,.1)}100%{background:transparent}}
+
+::-webkit-scrollbar{width:12px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#4fb3ff,#00d4ff);border-radius:6px}
+
+@media(max-width:1024px){
+header h1{font-size:50px}
+header p{font-size:16px}
+section{padding:80px 25px}
+.services-grid{gap:25px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.service-card{padding:35px 25px}
+.service-card h3{font-size:20px}
+table{font-size:13px}
+th,td{padding:15px}
+}
+
+@media(max-width:768px){
+nav{padding:12px 15px}
+nav strong{font-size:18px}
+nav a{margin-left:12px;font-size:12px}
+
+header{min-height:55vh;margin-top:70px}
+header h1{font-size:38px}
+header p{font-size:14px}
+
+section{padding:60px 20px}
+
+.services-grid{gap:15px;grid-template-columns:1fr}
+.service-card{padding:30px 20px;border-radius:20px}
+.service-icon{font-size:40px;margin-bottom:15px}
+.service-card h3{font-size:18px;margin-bottom:12px}
+.service-card p{font-size:13px}
+.price-tag{font-size:13px;padding:6px 14px}
+
+.comparison-table{border-radius:20px;margin-top:60px;overflow-x:auto}
+table{width:100%;font-size:12px;display:block;overflow-x:auto}
+th,td{padding:12px 10px;font-size:11px}
+
+footer{padding:40px 20px}
+}
+
+@media(max-width:480px){
+nav{flex-direction:column;gap:8px}
+nav strong{font-size:16px;margin-bottom:8px}
+nav > div{width:100%;justify-content:space-between}
+nav a{margin-left:8px;font-size:11px;margin-bottom:4px}
+.toggle{font-size:10px;padding:5px 10px;margin-left:auto}
+
+header{min-height:50vh;padding-top:70px}
+header h1{font-size:28px;margin-bottom:10px}
+header p{font-size:12px;line-height:1.4}
+
+section{padding:50px 15px;max-width:100%}
+
+.services-grid{grid-template-columns:1fr;gap:12px}
+.service-card{padding:20px 15px;border-radius:15px}
+.service-icon{font-size:32px;margin-bottom:12px}
+.service-card h3{font-size:16px;margin-bottom:10px}
+.service-card p{font-size:12px;line-height:1.5}
+.price-tag{font-size:11px;padding:5px 12px}
+
+.comparison-table{margin-top:50px;border-radius:15px;overflow-x:auto}
+table{display:block;overflow-x:auto;font-size:10px}
+th{font-size:11px}
+td{font-size:10px;padding:10px 8px}
+th,td{padding:10px 8px}
+
+footer{padding:30px 15px}
+}
 
 ::-webkit-scrollbar{width:12px}
 ::-webkit-scrollbar-track{background:var(--bg)}
@@ -75,7 +162,6 @@ footer{background:linear-gradient(135deg,var(--p),#0a1428);color:#fff;text-align
 <a data-link href="about.html">About</a>
 <a data-link href="services.html">Services</a>
 <a data-link href="contact.html">Contact</a>
-<a data-link href="login.html">Login</a>
 <span class="toggle" onclick="toggleDark()">Dark</span>
 </div>
 </nav>
